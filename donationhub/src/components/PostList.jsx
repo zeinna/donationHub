@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import { useSelector } from 'react-redux';
 import './PostList.css';
 
 const PostList = () => {
-  const { posts } = useApp();
+  const posts = useSelector((state) => state.posts);
   const [category, setCategory] = useState('all');
   const [search, setSearch] = useState('');
 

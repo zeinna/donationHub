@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useApp } from '../context/AppContext.jsx';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/userSlice';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useApp();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -21,7 +22,7 @@ const Login = () => {
         email: email,
         role: email.includes('charity') ? 'charity' : 'donor',
       };
-      login(mockUser);
+      dispatch(login(mockUser));
       navigate('/');
     } else {
       setError('Please fill all fields');

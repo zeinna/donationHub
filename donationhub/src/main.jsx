@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppProvider } from './context/AppContext';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import Layout from './components/Layout';
 import Homepage from './components/Homepage';
 import Login from './components/login';
@@ -15,8 +16,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AppProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Homepage />} />
@@ -29,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="claims" element={<ClaimsHistory />} />
           </Route>
         </Routes>
-      </AppProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

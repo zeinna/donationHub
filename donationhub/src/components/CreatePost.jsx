@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { addPost } from '../features/postsSlice';
 import './CreatePost.css';
 
 const CreatePost = () => {
-  const { user, addPost } = useApp();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({
     title: '',
@@ -39,7 +41,7 @@ const CreatePost = () => {
       available: true,
       claimedBy: null,
     };
-    addPost(newPost);
+    dispatch(addPost(newPost));
     alert('Post created successfully!');
     navigate('/posts');
   };

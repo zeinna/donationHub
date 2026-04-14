@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import { useSelector } from 'react-redux';
 import './Homepage.css';
 
 const Homepage = () => {
-  const { posts } = useApp();
+  const posts = useSelector((state) => state.posts);
   const recentPosts = posts.slice(0, 3);
 
   return (
